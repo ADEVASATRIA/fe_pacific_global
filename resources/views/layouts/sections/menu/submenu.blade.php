@@ -12,24 +12,24 @@
                 $active = 'active open';
                 $currentRouteName = Route::currentRouteName();
 
-                if ($currentRouteName === $submenu->slug) {
+                if ($currentRouteName === $menu['slug']) {
                     $activeClass = 'active';
-                } elseif (isset($submenu->submenu)) {
-                    if (gettype($submenu->slug) === 'array') {
-                        foreach ($submenu->slug as $slug) {
-                            if (str_contains($currentRouteName, $slug) and strpos($currentRouteName, $slug) === 0) {
-                                $activeClass = $active;
+                } elseif (isset($menu['submenu'])) {
+                    foreach ($menu['submenu'] as $submenu) {
+                        if (is_array($submenu['slug'])) {
+                            foreach ($submenu['slug'] as $slug) {
+                                if ($currentRouteName === $slug) {
+                                    $activeClass = 'active open';
+                                    break 2; // Keluar dari kedua loop jika ditemukan
+                                }
                             }
-                        }
-                    } else {
-                        if (
-                            str_contains($currentRouteName, $submenu->slug) and
-                            strpos($currentRouteName, $submenu->slug) === 0
-                        ) {
-                            $activeClass = $active;
+                        } elseif ($currentRouteName === $submenu['slug']) {
+                            $activeClass = 'active open';
+                            break;
                         }
                     }
                 }
+
             @endphp
 
             <li class="menu-item {{ $activeClass }}">
