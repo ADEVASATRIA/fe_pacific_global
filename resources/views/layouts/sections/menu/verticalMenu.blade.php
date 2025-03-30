@@ -1,3 +1,9 @@
+@php
+    use App\Service\WEB\Back\Menu\VerticalMenuService;
+
+    extract(VerticalMenuService::getMenu());
+@endphp
+
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <!-- ! Hide app brand if navbar-full -->
     <div class="app-brand demo">
@@ -11,39 +17,6 @@
     </div>
     <div class="menu-inner-shadow"></div>
     <ul class="menu-inner py-1">
-        @php
-            $menus = [
-                ['name' => 'Dashboard', 'slug' => 'dashboard', 'url' => '/dashboard', 'icon' => 'bx bx-home-alt'],
-                [
-                    'name' => 'Role',
-                    'slug' => 'role',
-                    'url' => '#',
-                    'icon' => 'bx bx-user',
-                    'submenu' => [['name' => 'View All Role', 'slug' => 'view-all-role', 'url' => '/role-view']],
-                ],
-                ['name' => 'Item', 'slug' => 'item', 'url' => '/item-view', 'icon' => 'bx bx-box'],
-                [
-                    'name' => 'Ticket Type',
-                    'slug' => 'ticket-type',
-                    'url' => '/ticket-type-view',
-                    'icon' => 'bx bx-receipt',
-                ],
-                ['name' => 'Package', 'slug' => 'package', 'url' => '/package-view', 'icon' => 'bx bx-package'],
-                ['name' => 'Clubhouse', 'slug' => 'clubhouse', 'url' => '/clubhouse-view', 'icon' => 'bx bx-building'],
-            ];
-
-            $currentRouteName = Route::currentRouteName() ?? '';
-            if (empty($currentRouteName)) {
-                $currentURL = request()->path();
-                foreach ($menus as $menu) {
-                    if (isset($menu['slug']) && isset($menu['url']) && trim($menu['url'], '/') == $currentURL) {
-                        $currentRouteName = $menu['slug'];
-                        break;
-                    }
-                }
-            }
-        @endphp
-
         @foreach ($menus as $menu)
             @php
                 $activeClass = '';
