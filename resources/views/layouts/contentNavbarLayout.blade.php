@@ -1,16 +1,11 @@
 @extends('layouts/commonMaster' )
 
 @php
-/* Display elements */
 $contentNavbar = true;
-$containerNav = ($containerNav ?? 'container-xxl');
-$isNavbar = ($isNavbar ?? true);
 $isMenu = ($isMenu ?? true);
 $isFlex = ($isFlex ?? false);
 $isFooter = ($isFooter ?? true);
 
-/* HTML Classes */
-$navbarDetached = 'navbar-detached';
 
 /* Content classes */
 $container = ($container ?? 'container-xxl');
@@ -28,12 +23,6 @@ $container = ($container ?? 'container-xxl');
 
     <!-- Layout page -->
     <div class="layout-page">
-      <!-- BEGIN: Navbar-->
-      @if ($isNavbar)
-      @include('layouts/sections/navbar/navbar')
-      @endif
-      <!-- END: Navbar-->
-
 
       <!-- Content wrapper -->
       <div class="content-wrapper">

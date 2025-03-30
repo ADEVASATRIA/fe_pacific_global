@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (response.ok) {
                 loginMessage.innerHTML = '<span style="color: green;">Login Berhasil!</span>';
                 localStorage.setItem("token", data.token); // Simpan token
-                window.location.href = "/"; // Redirect ke dashboard
+                window.location.href = "/dashboard"; // Redirect ke dashboard
             } else {
                 loginMessage.innerHTML = '<span style="color: red;">' + data.message + '</span>';
             }
