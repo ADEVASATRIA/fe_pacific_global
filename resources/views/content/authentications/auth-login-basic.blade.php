@@ -26,10 +26,13 @@
           </div>
 
           <form id="loginForm">
+            @csrf
+
             <div class="mb-6">
               <label for="username" class="form-label">Username</label>
-              <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+              <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required autofocus>
             </div>
+            
             <div class="mb-6 form-password-toggle">
               <label class="form-label" for="password">Password</label>
               <div class="input-group input-group-merge">
@@ -39,13 +42,17 @@
             </div>
 
             <div class="mb-6">
-              <button type="submit" class="btn btn-primary d-grid w-100">Login</button>
+              <button type="submit" class="btn btn-primary d-grid w-100" id="loginButton">
+                <span id="loginButtonText">Login</span>
+                <span id="loginButtonSpinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+              </button>
             </div>
 
-            <div id="loginMessage" class="text-center"></div>
+            <!-- Pesan Error/Sukses -->
+            <div id="loginMessage" class="alert d-none"></div>
           </form>
 
-          <p class="text-center">
+          <p class="text-center mt-3">
             <a href="{{url('/register')}}">
               <span>Register an account</span>
             </a>
@@ -55,4 +62,7 @@
     </div>
   </div>
 </div>
+
+<!-- Toast Notification Container -->
+<div id="toastContainer" class="position-fixed bottom-0 end-0 p-3" style="z-index: 11"></div>
 @endsection

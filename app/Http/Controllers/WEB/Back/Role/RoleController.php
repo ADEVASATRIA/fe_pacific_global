@@ -10,4 +10,8 @@ class RoleController extends Controller
     public function index(){
         return view('content.back.role.role-view');
     }
+
+    public function createRole(){
+        return view('content.back.role.role-create');
+    }
 }

@@ -22,6 +22,7 @@ Route::group([], function () {
 
     // ROLE VIEW BACK OFFICE
     Route::get('/role-view', [RoleController::class, 'index'])->name('viewRole');
+    Route::get('/role-create', [RoleController::class, 'createRole'])->name('createRole');
 
     // TICKET TYPE VIEW BACK OFFICE
     Route::get('/ticket-type-view', [TicketTypeController::class, 'index'])->name('viewTicketType');
