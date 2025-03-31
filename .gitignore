@@ -1,28 +1,48 @@
-/.phpunit.cache
+# Laravel default ignores
 /node_modules
-
-/public/build
 /public/hot
 /public/storage
 /storage/*.key
 /vendor
-
 .env
-.env.backup
-.env.production
+.env.*.local
+.env.local
+.env.*.backup
 .phpunit.result.cache
-
+.phpunit.cache
 docker-compose.override.yml
-
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-/.fleet
-/.idea
-/.vscode
+yarn.lock
+composer.lock
+package-lock.json
 
-!/public/assets
-!/public/assets/*
+# Build assets (handled by Vite)
+/public/build
 /public/css
 /public/js
+
+# IDE specific files
+/.idea
+/.vscode
+/.fleet
+/.vscode
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Debugging files
+dump.rdb
+*.sqlite
+*.sqlite-journal
+
+# Custom assets (if needed)
+!/public/assets
