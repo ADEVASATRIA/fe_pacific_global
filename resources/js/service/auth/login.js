@@ -1,17 +1,19 @@
+import { API_ENDPOINTS } from '../../config/api';
+
 document.addEventListener("DOMContentLoaded", function () {
     const loginForm = document.getElementById("loginForm");
 
     loginForm.addEventListener("submit", async function (event) {
-        event.preventDefault(); // Mencegah reload halaman
+        event.preventDefault();
 
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
         const loginMessage = document.getElementById("loginMessage");
 
-        loginMessage.innerHTML = "Logging in..."; // Menampilkan pesan loading
+        loginMessage.innerHTML = "Logging in...";
 
         try {
-            const response = await fetch("http://127.0.0.1:8001/api/login", {
+            const response = await fetch(API_ENDPOINTS.LOGIN, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -24,8 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (response.ok) {
                 loginMessage.innerHTML = '<span style="color: green;">Login Berhasil!</span>';
-                localStorage.setItem("token", data.token); // Simpan token
-                window.location.href = "/dashboard"; // Redirect ke dashboard
+                localStorage.setItem("token", data.token); 
+                window.location.href = "/dashboard"; 
             } else {
                 loginMessage.innerHTML = '<span style="color: red;">' + data.message + '</span>';
             }

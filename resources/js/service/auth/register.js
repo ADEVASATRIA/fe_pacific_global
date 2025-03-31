@@ -1,8 +1,10 @@
+import { API_ENDPOINTS } from "../../config/api.js";
+
 document.addEventListener("DOMContentLoaded", async function () {
     const roleSelect = document.getElementById("roleSelect");
 
     try {
-        const response = await fetch("http://127.0.0.1:8001/api/roles", {
+        const response = await fetch(API_ENDPOINTS.ROLES, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -45,7 +47,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         };
 
         try {
-            const response = await fetch("http://127.0.0.1:8001/api/register", {
+            const response = await fetch(API_ENDPOINTS.REGISTER, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
