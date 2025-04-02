@@ -1,6 +1,6 @@
 import { fetchRoles } from './role_api.js';
 import { renderRoleTable } from './role_ui.js';
-import { setupRoleForm } from './role_form.js';
+import { setupRoleActions, setupRoleForm } from './role_form.js';
 import { checkAuth, handleUnauthorized } from '../../../utils/api';
 
 document.addEventListener('DOMContentLoaded', async function () {
@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
   setupRoleForm();
-
+  setupRoleActions();
+  
   const roles = await fetchRoles();
   renderRoleTable(roles);
 });

@@ -36,3 +36,7 @@ Route::group([], function () {
     // PACKAGE VIEW BACK OFFICE
     Route::get('/package-view', [PackageController::class, 'index'])->name('viewPackage');
 });
+
+Route::get('/error-page', function () {
+    return view('content.error.misc-error');
+});

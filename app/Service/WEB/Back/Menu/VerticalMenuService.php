@@ -9,16 +9,19 @@ class VerticalMenuService
     public static function getMenu()
     {
         $menus = [
-            ['name' => 'Dashboard', 'slug' => 'dashboard', 'url' => '/dashboard', 'icon' => 'bx bx-home-alt'],
+            [
+                'name' => 'Dashboard', 
+                'slug' => 'dashboard', 
+                'url' => '/dashboard', 
+                'icon' => 'bx bx-home-alt'],
             [
                 'name' => 'Role',
                 'slug' => 'role',
-                'url' => '#',
+                'url' => '/role-view',
                 'icon' => 'bx bx-user',
-                'submenu' => [
-                    ['name' => 'View All Role', 'slug' => 'view-all-role', 'url' => '/role-view'],
-                    ['name' => 'Create Role', 'slug' => 'create-role', 'url' => '/role-create'],
-                ],
+                // 'submenu' => [
+                //     ['name' => 'View All Role', 'slug' => 'view-all-role', 'url' => '/role-view']
+                // ],
             ],
             ['name' => 'Item', 'slug' => 'item', 'url' => '/item-view', 'icon' => 'bx bx-box'],
             [

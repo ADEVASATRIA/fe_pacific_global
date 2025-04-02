@@ -41,6 +41,7 @@
             </div>
         </div>
 
+        <!-- Modal For Add or Edit-->
         <div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
             <div class="modal-dialog">
                 <form id="roleForm" class="modal-content">
@@ -74,6 +75,26 @@
                 </form>
             </div>
         </div>
+
+        {{-- Modal For Confirm Detele --}}
+        <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Confirm Deletion</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you want to delete this role?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
     <!-- Toast Container -->
     <div id="toastContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 11"></div>
     </div>
