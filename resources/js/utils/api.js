@@ -9,7 +9,7 @@ export async function apiRequest(url, method = 'GET', body = null) {
         headers['Authorization'] = `Bearer ${token}`;
     }
 
-    headers['Origin'] = window.location.origin;
+    // headers['Origin'] = window.location.origin;
 
     const config = {
         method,
@@ -33,8 +33,9 @@ export async function apiRequest(url, method = 'GET', body = null) {
         const data = await response.json();
         
         if (!response.ok) {
-            throw new Error(data.message || 'Request failed');
-        }
+            console.error("Full API Error Response:", data);  // Tambahkan log lengkap
+            throw new Error(data.errors ? JSON.stringify(data.errors) : data.message || 'Request failed');
+        }        
 
         return data;
     } catch (error) {

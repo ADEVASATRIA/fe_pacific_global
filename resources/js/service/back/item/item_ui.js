@@ -1,13 +1,48 @@
+import { openEditModal } from "./item_form";
+import { deleteItem, fetchItems } from "./item_api";
+
 import { showToast } from "../role/toast";
+
+let selectedItemId = null;
+let deleteModal;
+
+document.addEventListener('DOMContentLoaded', function () {
+    deleteModal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+
+    document.querySelectorAll('.delete-item').forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            selectedItemId = this.getAttribute('data-id');
+            deleteModal.show();
+        });
+    });
+
+    confirmDeleteBtn.addEventListener('click', async function () {
+        if (!selectedItemId) return;
+        
+        try {
+            await deleteItem(selectedItemId);
+            showToast('success', 'Item deleted successfully');
+            
+            const items = await fetchItems();
+            renderItemTable(items);
+        } catch (error) {
+            showToast('danger', 'Failed to delete item');
+        }
+        
+        deleteModal.hide();
+    });
+});
 
 export function renderItemTable(items) {
     const tableBody = document.querySelector('#itemTable tbody');
     if (!tableBody) return;
 
-    if (items.length === 0) {
+    if (!items || items.length === 0) {
         tableBody.innerHTML = '<tr><td colspan="5" class="text-center">No items found.</td></tr>';
-        return;
     }
+    
 
     tableBody.innerHTML = items
     .map(item => `
@@ -28,10 +63,10 @@ export function renderItemTable(items) {
                     <i class="bx bx-dots-vertical-rounded"></i>
                     </button>
                     <div class="dropdown-menu">
-                    <a class="dropdown-item edit-role" href="#" data-id="${item.id}">
+                    <a class="dropdown-item edit-item" href="#" data-id="${item.id}">
                         <i class="bx bx-edit-alt me-1"></i> Edit
                     </a>
-                    <a class="dropdown-item delete-role" href="#" data-id="${item.id}">
+                    <a class="dropdown-item delete-item" href="#" data-id="${item.id}">
                         <i class="bx bx-trash me-1"></i> Delete
                     </a>
                     </div>
@@ -40,4 +75,21 @@ export function renderItemTable(items) {
         </tr>
     `)
     .join('');
+
+    document.querySelectorAll('.edit-item').forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            const itemId = this.getAttribute('data-id');
+            openEditModal(itemId); 
+        });
+    });
+
+    document.querySelectorAll('.delete-item').forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            const itemId = this.getAttribute('data-id');
+            selectedItemId = itemId;
+            deleteModal.show();
+        });
+    });
 }

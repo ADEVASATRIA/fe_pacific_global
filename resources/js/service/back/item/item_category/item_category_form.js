@@ -3,7 +3,7 @@ import { renderItemCategoryTable } from "./item_category_ui";
 import { showToast } from "../toast";
 import { set } from "lodash";
 
-let editingItemCategoryId = null; // Menyimpan ID saat edit
+let editingItemCategoryId = null; 
 
 export function setupItemCategoryForm() {
     const itemCategoryForm = document.getElementById('itemCategoryForm');
@@ -28,11 +28,9 @@ export function setupItemCategoryForm() {
             };
 
             if (editingItemCategoryId) {
-                // Jika dalam mode edit
                 await updateItemCategory(editingItemCategoryId, itemCategoryData);
                 showToast('success', 'Item Category updated successfully!');
             } else {
-                // Jika dalam mode create
                 await createItemCategory(itemCategoryData);
                 showToast('success', 'Item Category created successfully!');
             }
@@ -40,7 +38,7 @@ export function setupItemCategoryForm() {
             bootstrap.Modal.getInstance(document.getElementById('itemCategoryModal')).hide();
             itemCategoryForm.reset();
             editingItemCategoryId = null;
-            // Fetch ulang dan render ulang tabel
+            
             const itemCategories = await fetchItemCategories();
             renderItemCategoryTable(itemCategories);
         } catch (error) {
