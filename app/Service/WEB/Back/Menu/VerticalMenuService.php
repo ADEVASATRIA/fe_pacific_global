@@ -24,6 +24,7 @@ class VerticalMenuService
                 // ],
             ],
             ['name' => 'Item', 'slug' => 'item', 'url' => '/item-view', 'icon' => 'bx bx-box'],
+            ['name' => 'Clubhouse', 'slug' => 'clubhouse', 'url' => '/clubhouse-view', 'icon' => 'bx bx-building'],
             [
                 'name' => 'Ticket Type',
                 'slug' => 'ticket-type',
@@ -31,7 +32,7 @@ class VerticalMenuService
                 'icon' => 'bx bx-receipt',
             ],
             ['name' => 'Package', 'slug' => 'package', 'url' => '/package-view', 'icon' => 'bx bx-package'],
-            ['name' => 'Clubhouse', 'slug' => 'clubhouse', 'url' => '/clubhouse-view', 'icon' => 'bx bx-building'],
+            
         ];
 
         $currentRouteName = Route::currentRouteName() ?? '';

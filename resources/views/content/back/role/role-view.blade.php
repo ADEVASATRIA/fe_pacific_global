@@ -53,7 +53,8 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="nameBackdrop" class="form-label">Role Name</label>
-                                <input type="text" id="nameBackdrop" class="form-control" placeholder="Enter Role Name" required>
+                                <input type="text" id="nameBackdrop" class="form-control" placeholder="Enter Role Name"
+                                    required>
                             </div>
                             <div class="col mb-3">
                                 <label for="statusBackdrop" class="form-label">Status</label>
@@ -69,7 +70,8 @@
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary" id="saveRoleBtn">
                             <span id="saveRoleBtnText">Save</span>
-                            <span id="saveRoleBtnSpinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                            <span id="saveRoleBtnSpinner" class="spinner-border spinner-border-sm d-none" role="status"
+                                aria-hidden="true"></span>
                         </button>
                     </div>
                 </form>
@@ -79,24 +81,24 @@
         {{-- Modal For Confirm Detele --}}
         <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-sm" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Confirm Deletion</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirm Deletion</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this role?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                  <p>Are you sure you want to delete this role?</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
-                </div>
-              </div>
             </div>
-          </div>
-          
-    <!-- Toast Container -->
-    <div id="toastContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 11"></div>
+        </div>
+
+        <!-- Toast Container -->
+        <div id="toastContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 11"></div>
     </div>
     <!--/ Bordered Table -->
 @endsection

@@ -5,4 +5,6 @@ export const API_ENDPOINTS = {
 
     ITEM : `${import.meta.env.VITE_API_BASE_URL}/api/item`,
     ITEM_CATEGORY : `${import.meta.env.VITE_API_BASE_URL}/api/itemCategory`,
+
+    CLUBHOUSE: `${import.meta.env.VITE_API_BASE_URL}/api/clubhouse`,
 };
