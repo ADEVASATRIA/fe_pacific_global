@@ -9,4 +9,6 @@ export const API_ENDPOINTS = {
     CLUBHOUSE: `${import.meta.env.VITE_API_BASE_URL}/api/clubhouse`,
 
     TICKETTYPE: `${import.meta.env.VITE_API_BASE_URL}/api/ticketType`,
+
+    LOGOUT: `${import.meta.env.VITE_API_BASE_URL}/api/logout`,
 };
