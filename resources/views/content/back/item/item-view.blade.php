@@ -169,7 +169,8 @@
                         </div>
                         <div class="col-12 mb-3">
                             <label for="nameItem" class="form-label">Name</label>
-                            <input type="text" id="nameItem" class="form-control" placeholder="Enter Name Item" required>
+                            <input type="text" id="nameItem" class="form-control" placeholder="Enter Name Item"
+                                required>
                         </div>
                         <div class="col-12 mb-3">
                             <label for="price" class="form-label">Price</label>
@@ -213,7 +214,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to delete this role?</p>
+                    <p>Are you sure you want to delete this Item?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>

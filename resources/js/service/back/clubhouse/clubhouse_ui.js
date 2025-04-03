@@ -1,5 +1,5 @@
 import { openEditClubhouseModal } from './clubhouse_form';
-import { deleteClubhouse , fetchClubhouses } from './clubhouse_api';
+import { deleteClubhouse, fetchClubhouses } from './clubhouse_api';
 import { showToast } from '../clubhouse/toast';
 
 let selectedClubhouseId = null;
@@ -16,7 +16,7 @@ export function renderClubhouseTable(clubhouses) {
 
   tableBody.innerHTML = clubhouses
     .map(
-        clubhouse => `
+      clubhouse => `
             <tr>
                 <td>${clubhouse.id}</td>
                 <td>${clubhouse.name}</td>
@@ -44,52 +44,52 @@ export function renderClubhouseTable(clubhouses) {
                     </div>
                 </td>
             </tr>
-        `)
-        .join('');
+        `
+    )
+    .join('');
 
-        document.querySelectorAll('.edit-clubhouse').forEach(button => {
-            button.addEventListener('click', function (e) {
-                e.preventDefault();
-                const clubhouseId = this.getAttribute('data-id');
-                openEditClubhouseModal(clubhouseId);
-            });
-        });
-
-    document.querySelectorAll('.delete-clubhouse').forEach(button => {
-        button.addEventListener('click', function (e) {
-            e.preventDefault();
-            selectedClubhouseId = this.getAttribute('data-id');
-            deleteModal.show();
-        });
+  document.querySelectorAll('.edit-clubhouse').forEach(button => {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+      const clubhouseId = this.getAttribute('data-id');
+      openEditClubhouseModal(clubhouseId);
     });
+  });
+
+  document.querySelectorAll('.delete-clubhouse').forEach(button => {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+      selectedClubhouseId = this.getAttribute('data-id');
+      deleteModal.show();
+    });
+  });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    deleteModal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
-    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+  deleteModal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
+  const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
 
-    document.body.addEventListener('click', function (e) {
-        if (e.target.closest('.delete-clubhouse')) {
-            e.preventDefault();
-            selectedClubhouseId = e.target.closest('.delete-clubhouse').getAttribute('data-id');
-            deleteModal.show();
-        }
-    });
+  document.body.addEventListener('click', function (e) {
+    if (e.target.closest('.delete-clubhouse')) {
+      e.preventDefault();
+      selectedClubhouseId = e.target.closest('.delete-clubhouse').getAttribute('data-id');
+      deleteModal.show();
+    }
+  });
 
-    confirmDeleteBtn.addEventListener('click', async function () {
-        if (!selectedClubhouseId) return;
+  confirmDeleteBtn.addEventListener('click', async function () {
+    if (!selectedClubhouseId) return;
 
-        try {
-            await deleteClubhouse(selectedClubhouseId);
-            showToast('success', 'Clubhouse deleted successfully');
+    try {
+      await deleteClubhouse(selectedClubhouseId);
+      showToast('success', 'Clubhouse deleted successfully');
 
-            const clubhouses = await fetchClubhouses();
-            renderClubhouseTable(clubhouses);
-        } catch (error) {
-            showToast('danger', 'Failed to delete clubhouse');
-        }
+      const clubhouses = await fetchClubhouses();
+      renderClubhouseTable(clubhouses);
+    } catch (error) {
+      showToast('danger', 'Failed to delete clubhouse');
+    }
 
-        deleteModal.hide();
-    });
+    deleteModal.hide();
+  });
 });
-

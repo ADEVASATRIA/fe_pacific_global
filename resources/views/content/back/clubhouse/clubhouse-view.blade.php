@@ -54,15 +54,18 @@
                         <div class="row">
                             <div class="col-12 mb-3">
                                 <label for="nameClubhouse" class="form-label">Name</label>
-                                <input type="text" id="nameClubhouse" class="form-control" placeholder="Enter Name Clubhouse" required>
+                                <input type="text" id="nameClubhouse" class="form-control"
+                                    placeholder="Enter Name Clubhouse" required>
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="location" class="form-label">Location</label>
-                                <input type="text" id="location" class="form-control" placeholder="Enter Location" required>
+                                <input type="text" id="location" class="form-control" placeholder="Enter Location"
+                                    required>
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="phone" class="form-label">Phone</label>
-                                <input type="text" id="phone" class="form-control" placeholder="Enter Phone" required>
+                                <input type="text" id="phone" class="form-control" placeholder="Enter Phone"
+                                    required>
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="status" class="form-label">Status</label>
@@ -78,8 +81,8 @@
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary" id="saveClubhouseBtn" style="width: 100px">
                             <span id="saveClubhouseBtnText">Save</span>
-                            <span id="saveClubhouseBtnSpinner" class="spinner-border spinner-border-sm d-none" role="status"
-                                aria-hidden="true"></span>
+                            <span id="saveClubhouseBtnSpinner" class="spinner-border spinner-border-sm d-none"
+                                role="status" aria-hidden="true"></span>
                         </button>
                     </div>
                 </form>
