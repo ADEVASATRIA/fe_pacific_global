@@ -11,4 +11,7 @@ export const API_ENDPOINTS = {
     TICKETTYPE: `${import.meta.env.VITE_API_BASE_URL}/api/ticketType`,
 
     LOGOUT: `${import.meta.env.VITE_API_BASE_URL}/api/logout`,
+
+    PACKAGE: `${import.meta.env.VITE_API_BASE_URL}/api/package`,
+    PACKAGE_CATEGORY: `${import.meta.env.VITE_API_BASE_URL}/api/packageCategory`,
 };
