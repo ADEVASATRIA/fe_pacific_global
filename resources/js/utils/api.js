@@ -25,10 +25,10 @@ export async function apiRequest(url, method = 'GET', body = null) {
     try {
         const response = await fetch(url, config);
         
-        if (response.status === 401) {
+        if (response.status === 401 || response.status === 403) {
             handleUnauthorized();
             throw new Error('Unauthorized');
-        }
+          }          
 
         const data = await response.json();
         
@@ -47,12 +47,25 @@ export async function apiRequest(url, method = 'GET', body = null) {
 export function handleUnauthorized() {
     localStorage.removeItem('jwt_token');
     localStorage.removeItem('user');
-    window.location.href = '/login';
+    window.location.replace('/login');
 }
 
 export function checkAuth() {
-    return !!localStorage.getItem('jwt_token');
+    const token = localStorage.getItem('jwt_token');
+    if (!token) return false;
+    return !isTokenExpired(token);
 }
+
+export async function fetchWithAuth(url, method = 'GET', body = null) {
+    try {
+        return await apiRequest(url, method, body);
+      } catch (err) {
+        showToast('danger', err.message);
+        throw err;
+      }
+      
+}
+
 
 /**
  * Fungsi untuk menampilkan toast notification
@@ -100,3 +113,14 @@ function createToastContainer() {
     document.body.appendChild(container);
     return container;
 }
+
+function isTokenExpired(token) {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const now = Math.floor(Date.now() / 1000);
+      return payload.exp < now;
+    } catch (e) {
+      return true;
+    }
+  }
+  

@@ -42,14 +42,14 @@
                                     <table class="table table-bordered" id="packageTable">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Package Category</th>
-                                                <th>Package Name</th>
-                                                <th>Price</th>
-                                                <th>Duration</th>
-                                                <th>Status</th>
-                                                <th>Details</th>
-                                                <th>Actions</th>
+                                                <th class="text-center">ID</th>
+                                                <th class="text-center">Package Category</th>
+                                                <th class="text-center">Package Name</th>
+                                                <th class="text-center text-nowrap">Price</th>
+                                                <th class="text-center">Duration</th>
+                                                <th class="text-center">Status</th>
+                                                <th class="text-center">Details</th>
+                                                <th class="text-center">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -111,6 +111,101 @@
         </div>
     </div>
 
+
+    <!-- Modal For Add or Edit Package-->
+    <div class="modal fade" id="packageModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="packageModalTitle">Add Package Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="packageForm">
+                        <!-- Package Category -->
+                        <div class="mb-3">
+                            <label for="categorySelect" class="form-label">Category</label>
+                            <select id="categorySelect" class="form-select" required>
+                                <option value="">Select Category</option>
+                                <!-- Options will be dynamically loaded here -->
+                            </select>
+                        </div>
+
+                        <!-- Package Name -->
+                        <div class="mb-3">
+                            <label for="packageName" class="form-label">Package Name</label>
+                            <input type="text" class="form-control" id="packageName"
+                                placeholder="Input Name Package" />
+                        </div>
+
+                        <!-- Price -->
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Price</label>
+                            <input type="number" class="form-control" id="price" placeholder="Input Price" />
+                        </div>
+
+                        <!-- Duration -->
+                        <div class="mb-3">
+                            <label for="duration" class="form-label">Duration</label>
+                            <input type="text" class="form-control" id="duration" placeholder="Input Duration" />
+                        </div>
+
+                        <!-- Status -->
+                        <div class="mb-3">
+                            <label for="statusPackage" class="form-label">Select Status</label>
+                            <select class="form-select" id="statusPackage">
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                        </div>
+
+                        <!-- Pills Tabs -->
+                        <div class="mb-3">
+                            <ul class="nav nav-pills mb-3" id="package-tab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="ticket-tab" data-bs-toggle="pill"
+                                        data-bs-target="#ticket-tab-pane" type="button" role="tab"
+                                        aria-controls="ticket-tab-pane" aria-selected="true">
+                                        <i class="bx bx-ticket bx-sm me-1_5 align-text-bottom"></i> Ticket
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="item-tab" data-bs-toggle="pill"
+                                        data-bs-target="#item-tab-pane" type="button" role="tab"
+                                        aria-controls="item-tab-pane" aria-selected="false">
+                                        <i class="bx bx-box bx-sm me-1_5 align-text-bottom"></i> Item
+                                    </button>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="package-tabContent">
+                                <div class="tab-pane fade show active" id="ticket-tab-pane" role="tabpanel"
+                                    aria-labelledby="ticket-tab" tabindex="0">
+                                    <div class="border rounded p-3" style="height: 300px; overflow-y: auto;">
+                                        <p class="text-muted mb-2 fw-semibold">All Ticket List</p>
+                                        <div class="list-group" id="ticket-list"></div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="item-tab-pane" role="tabpanel" aria-labelledby="item-tab"
+                                    tabindex="0">
+                                    <div class="border rounded p-3" style="height: 300px; overflow-y: auto;">
+                                        <p class="text-muted mb-2 fw-semibold">All Item List</p>
+                                        <div class="list-group" id="item-list"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal For Add or Edit Package Category-->
     <div class="modal fade" id="packageCategoryModal" data-bs-backdrop="static" tabindex="-1">
         <div class="modal-dialog">
@@ -158,6 +253,8 @@
         </div>
     </div>
 
+
+
     {{-- Modal For Confirm Detele --}}
     <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-sm" role="document">
@@ -179,3 +276,17 @@
 
     <div id="toastContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 11"></div>
 @endsection
+
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+    id="offcanvasScroll" aria-labelledby="offcanvasScrollLabel">
+    <div class="offcanvas-header border-bottom">
+        <h5 id="offcanvasScrollLabel" class="offcanvas-title">Package Details</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body p-0" id="packageDetailsContent">
+        <div class="text-center py-5 text-muted">
+            <i class="bi bi-box2 fs-1"></i>
+            <p class="mt-3">Select a package to view its details.</p>
+        </div>
+    </div>
+</div>

@@ -50,7 +50,7 @@ export function renderItemTable(items) {
             <td>${item.id}</td>
             <td>${item.name}</td>
             <td>${item.categories?.name ?? 'No Category'}</td> <!-- Safe check -->
-            <td>${item.price}</td>
+            <td>Rp. ${item.price.toLocaleString('id-ID')}</td>
             <td>${item.stock}</td>
             <td>
                 <span class="badge bg-label-${item.status == 1 ? 'primary' : 'warning'}">

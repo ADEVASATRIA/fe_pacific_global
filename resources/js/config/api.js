@@ -14,4 +14,5 @@ export const API_ENDPOINTS = {
 
     PACKAGE: `${import.meta.env.VITE_API_BASE_URL}/api/package`,
     PACKAGE_CATEGORY: `${import.meta.env.VITE_API_BASE_URL}/api/packageCategory`,
+    PACKAGE_DETAILS: `${import.meta.env.VITE_API_BASE_URL}/api/package`,
 };

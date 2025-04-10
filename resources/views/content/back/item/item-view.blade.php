@@ -148,7 +148,7 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div>        
 
     <!-- Modal for Add or Edit Item Category -->
     <div class="modal fade" id="itemModal" data-bs-backdrop="static" tabindex="-1">
