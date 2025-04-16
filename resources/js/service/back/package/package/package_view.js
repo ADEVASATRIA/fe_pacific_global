@@ -1,7 +1,7 @@
 import { checkAuth, handleUnauthorized } from "../../../../utils/api";
 import { fetchPackages, fetchItems, fetchTicketTypes } from "./package_api";
 import { renderPackageTable } from "./package_ui";
-import { setupPackageForm , renderPackageTicketItemLists} from "./package_form";
+import { setupPackageForm , renderPackageTicketItemLists, setupEditPackage} from "./package_form";
 
 document.addEventListener('DOMContentLoaded', async function () {
     if (!checkAuth()) {

@@ -2,6 +2,7 @@ import { API_ENDPOINTS } from '../../../../config/api';
 import { fetchWithAuth } from '../../../../utils/api';
 import { deletePackage } from './package_api';
 import { showToast } from './toast';
+import { setupEditPackage } from './package_form';
 
 let packageList = [];
 let selectedPackageIdToDelete = null;
@@ -10,55 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setupDeleteConfirmation();
   setupGlobalClickEvents();
 });
-
-function setupDeleteConfirmation() {
-  const confirmBtn = document.getElementById('confirmDeleteBtn');
-  if (!confirmBtn) return;
-
-  confirmBtn.addEventListener('click', async () => {
-    if (!selectedPackageIdToDelete) return;
-
-    try {
-      await deletePackage(selectedPackageIdToDelete);
-      packageList = packageList.filter(pkg => pkg.id != selectedPackageIdToDelete);
-      renderPackageTable(packageList);
-
-      showToast('success', 'Package deleted successfully.');
-
-      const modalElement = document.getElementById('deleteConfirmModal');
-      const modal = bootstrap.Modal.getInstance(modalElement);
-      if (modal) modal.hide();
-
-      document.body.classList.remove('modal-open');
-      const backdrop = document.querySelector('.modal-backdrop');
-      if (backdrop) backdrop.remove();
-
-      selectedPackageIdToDelete = null;
-    } catch (error) {
-      console.error('Failed to delete package', error);
-      showToast('danger', 'Failed to delete package.');
-    }
-  });
-}
-
-function setupGlobalClickEvents() {
-  document.addEventListener('click', async function (e) {
-    const deleteBtn = e.target.closest('.delete-package');
-    if (deleteBtn) {
-      e.preventDefault();
-      selectedPackageIdToDelete = deleteBtn.dataset.id;
-      const modal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
-      modal.show();
-      return;
-    }
-
-    const viewBtn = e.target.closest('.view-details-btn');
-    if (viewBtn) {
-      const id = viewBtn.dataset.id;
-      await handleViewDetails(id);
-    }
-  });
-}
 
 async function handleViewDetails(id) {
   const container = document.getElementById('packageDetailsContent');
@@ -179,4 +131,62 @@ export function renderPackageTable(packages) {
       </td>
     </tr>
   `).join('');
+}
+
+
+function setupDeleteConfirmation() {
+  const confirmBtn = document.getElementById('confirmDeleteBtn');
+  if (!confirmBtn) return;
+
+  confirmBtn.addEventListener('click', async () => {
+    if (!selectedPackageIdToDelete) return;
+
+    try {
+      await deletePackage(selectedPackageIdToDelete);
+      packageList = packageList.filter(pkg => pkg.id != selectedPackageIdToDelete);
+      renderPackageTable(packageList);
+
+      showToast('success', 'Package deleted successfully.');
+
+      const modalElement = document.getElementById('deleteConfirmModal');
+      const modal = bootstrap.Modal.getInstance(modalElement);
+      if (modal) modal.hide();
+
+      document.body.classList.remove('modal-open');
+      const backdrop = document.querySelector('.modal-backdrop');
+      if (backdrop) backdrop.remove();
+
+      selectedPackageIdToDelete = null;
+    } catch (error) {
+      console.error('Failed to delete package', error);
+      showToast('danger', 'Failed to delete package.');
+    }
+  });
+}
+
+function setupGlobalClickEvents() {
+  document.addEventListener('click', async function (e) {
+    const deleteBtn = e.target.closest('.delete-package');
+    if (deleteBtn) {
+      e.preventDefault();
+      selectedPackageIdToDelete = deleteBtn.dataset.id;
+      const modal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
+      modal.show();
+      return;
+    }
+
+    const viewBtn = e.target.closest('.view-details-btn');
+    if (viewBtn) {
+      const id = viewBtn.dataset.id;
+      await handleViewDetails(id);
+    }
+
+    // Tambahkan handler untuk tombol edit
+    const editBtn = e.target.closest('.edit-package');
+    if (editBtn) {
+      e.preventDefault();
+      const packageId = editBtn.dataset.id;
+      await setupEditPackage(packageId);
+    }
+  });
 }

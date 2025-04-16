@@ -33,11 +33,14 @@ export async function createPackage(packageData) {
 
 export async function fetchPackageById(packageId) {
     try {
-        const data = await apiRequest(`${API_ENDPOINTS.PACKAGE}/${packageId}`);
-        if (!data.success) {
-            throw new Error('Package not found');
+        const response = await apiRequest(`${API_ENDPOINTS.PACKAGE}/${packageId}`);
+        
+        // Periksa langsung properti success
+        if (response.success !== true) {
+            throw new Error(response.message || 'Package not found');
         }
-        return data.data;
+        
+        return response.data;
     } catch (error) {
         console.error('Error fetching package:', error);
         throw error;
@@ -61,6 +64,7 @@ export async function deletePackage(packageId) {
         throw error;
     }
 }
+
 
 // KHUSUS UNTUK PACKAGE ADA FETCH TICKET DAN FETCH ITEM
 
