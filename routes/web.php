@@ -6,6 +6,8 @@
 use App\Http\Controllers\WEB\Back\Clubhouse\ClubhouseController;
 use App\Http\Controllers\WEB\Back\Item\ItemController;
 use App\Http\Controllers\WEB\Back\Package\PackageController;
+use App\Http\Controllers\WEB\Front\Home\HomeController;
+use App\Http\Controllers\WEB\Option\ContentOptionController;
 use Illuminate\Support\Facades\Route;
 
 // Controller dari pacific global
@@ -19,6 +21,13 @@ Route::group([], function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::get('/register', [LoginController::class, 'resgiter'])->name('register');
     Route::get('/dashboard', [dashboardController::class, 'index'])->name('dashboard');
+
+    // ROUTE OPTION FOR BACK OFFICE OR FRONT OFFICE
+    Route::get('/content-option', [ContentOptionController::class, 'index'])->name('contentOption');
+
+
+    // ROUTE FOR FRONT OFFICE
+    Route::get('/home-front', [HomeController::class, 'index'])->name('homeFront');
 
     // ROLE VIEW BACK OFFICE
     Route::get('/role-view', [RoleController::class, 'index'])->name('viewRole');

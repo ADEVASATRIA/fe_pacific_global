@@ -9,10 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const loginMessage = document.getElementById("loginMessage");
 
     // Jika sudah login, redirect ke dashboard
-    if (localStorage.getItem('jwt_token')) {
-        window.location.href = "/dashboard";
-        return;
-    }
+    // if (localStorage.getItem('jwt_token')) {
+    //     window.location.href = "/dashboard";
+    //     return;
+    // }
 
     if (loginForm) {
         loginForm.addEventListener("submit", async function (event) {
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                 // Redirect ke dashboard
                 setTimeout(() => {
-                    window.location.href = data.redirectTo || "/dashboard";
+                    window.location.href = data.redirectTo || "/content-option";
                 }, 1500);
                 
             } catch (error) {
