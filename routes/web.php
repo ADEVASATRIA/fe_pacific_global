@@ -6,6 +6,7 @@
 use App\Http\Controllers\WEB\Back\Clubhouse\ClubhouseController;
 use App\Http\Controllers\WEB\Back\Item\ItemController;
 use App\Http\Controllers\WEB\Back\Package\PackageController;
+use App\Http\Controllers\WEB\Back\Promo\PromoController;
 use App\Http\Controllers\WEB\Front\Home\HomeController;
 use App\Http\Controllers\WEB\Option\ContentOptionController;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,9 @@ Route::group([], function () {
 
     // PACKAGE VIEW BACK OFFICE
     Route::get('/package-view', [PackageController::class, 'index'])->name('viewPackage');
+
+    // PROMO VIEW BACK OFFICE
+    Route::get('/promo-view', [PromoController::class, 'index'])->name('viewPromo');
 });
 
 Route::get('/error-page', function () {

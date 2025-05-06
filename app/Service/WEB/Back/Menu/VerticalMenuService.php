@@ -32,6 +32,7 @@ class VerticalMenuService
                 'icon' => 'bx bx-receipt',
             ],
             ['name' => 'Package', 'slug' => 'package', 'url' => '/package-view', 'icon' => 'bx bx-package'],
+            ['name' => 'Promo', 'slug' => 'promo', 'url' => '/promo-view', 'icon' => 'bx bxs-discount'],
             
         ];
 
