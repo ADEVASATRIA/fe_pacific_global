@@ -8,6 +8,7 @@ use App\Http\Controllers\WEB\Back\Item\ItemController;
 use App\Http\Controllers\WEB\Back\Package\PackageController;
 use App\Http\Controllers\WEB\Back\Promo\PromoController;
 use App\Http\Controllers\WEB\Front\Home\HomeController;
+use App\Http\Controllers\WEB\Front\Ticket\TicketController;
 use App\Http\Controllers\WEB\Option\ContentOptionController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,10 @@ Route::group([], function () {
 
     // ROUTE FOR FRONT OFFICE
     Route::get('/home-front', [HomeController::class, 'index'])->name('homeFront');
+    Route::get('/ticket-view', [TicketController::class, 'ticketView'])->name('ticketView');
+
+
+
 
     // ROLE VIEW BACK OFFICE
     Route::get('/role-view', [RoleController::class, 'index'])->name('viewRole');
@@ -48,6 +53,10 @@ Route::group([], function () {
 
     // PROMO VIEW BACK OFFICE
     Route::get('/promo-view', [PromoController::class, 'index'])->name('viewPromo');
+
+
+
+    // FRONT
 });
 
 Route::get('/error-page', function () {
